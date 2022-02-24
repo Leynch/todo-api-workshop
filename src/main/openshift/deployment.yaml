@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-api-quarkus
+  namespace: lfa-pipe
+spec:
+  paused: true
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-api-quarkus
+  template:
+    metadata:
+      labels:
+        app: todo-api-quarkus
+    spec:
+      serviceAccountName: todo-api-quarkus
+      containers:
+        - name: todo-api-quarkus
+          image: todo-api-quarkus
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP

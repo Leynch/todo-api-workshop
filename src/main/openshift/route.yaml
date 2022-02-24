@@ -1,0 +1,15 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: todo-api-quarkus-route
+  namespace: lfa-pipe
+spec:
+  to:
+    kind: Service
+    name: todo-api-quarkus-svc
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+  wildcardPolicy: None
